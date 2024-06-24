@@ -14,7 +14,7 @@ bot.on("message", async (message) => {
         await bot.sendMessage(chatId, "Hello puk...", {
             reply_markup: {
                 keyboard: [
-                    [{ text: "Перейти на сайт" }],
+                    [{ text: "Перейти на сайт", web_app: { url: webAppUrl } }],
                     [
                         {
                             text: "Заказать обратный звонок",
