@@ -2,7 +2,8 @@ const TelegramBot = require("node-telegram-bot-api");
 
 const token = "7247572793:AAGgHpDggQQxKTk2KK6xgCEY_WXPZhmsLSw";
 // webAppUrl = "https://www.google.ru/?hl=ru";
-webAppUrl = "https://lighthearted-blancmange-54de70.netlify.app/";
+webAppUrl =
+    "https://667984b234a32c00087ca309--lighthearted-blancmange-54de70.netlify.app";
 
 const bot = new TelegramBot(token, { polling: true });
 
@@ -14,11 +15,10 @@ bot.on("message", async (message) => {
         await bot.sendMessage(chatId, "Hello puk...", {
             reply_markup: {
                 keyboard: [
-                    [{ text: "Перейти на сайт", web_app: { url: webAppUrl } }],
                     [
                         {
-                            text: "Заказать обратный звонок",
-                            web_app: { url: webAppUrl },
+                            text: "Перезвоните мне!",
+                            web_app: { url: webAppUrl + "/form" },
                         },
                     ],
                 ],
@@ -30,7 +30,7 @@ bot.on("message", async (message) => {
                 inline_keyboard: [
                     [
                         {
-                            text: "Перейди на сайт",
+                            text: "Сайт",
                             web_app: { url: webAppUrl },
                         },
                     ],
