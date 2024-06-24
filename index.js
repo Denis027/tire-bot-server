@@ -14,14 +14,13 @@ bot.on("message", async (message) => {
         await bot.sendMessage(chatId, "Hello puk...", {
             reply_markup: {
                 keyboard: [
+                    [{ text: "Перейти на сайт" }],
                     [
                         {
-                            text: "Сайт",
+                            text: "Заказать обратный звонок",
                             web_app: { url: webAppUrl },
                         },
                     ],
-                    [{ text: "Перейти на сайт" }],
-                    [{ text: "Связь" }],
                 ],
             },
         });
@@ -31,7 +30,7 @@ bot.on("message", async (message) => {
                 inline_keyboard: [
                     [
                         {
-                            text: "Заполнить форму",
+                            text: "Перейди на сайт",
                             web_app: { url: webAppUrl },
                         },
                     ],
