@@ -2,8 +2,12 @@ const TelegramBot = require("node-telegram-bot-api");
 
 const token = "7247572793:AAGgHpDggQQxKTk2KK6xgCEY_WXPZhmsLSw";
 // webAppUrl = "https://www.google.ru/?hl=ru";
+
 webAppUrl =
-    "https://667984b234a32c00087ca309--lighthearted-blancmange-54de70.netlify.app";
+    "https://667c778313d10800089de728--lighthearted-blancmange-54de70.netlify.app/";
+
+webAppFormUrl =
+    "https://667c778313d10800089de728--lighthearted-blancmange-54de70.netlify.app/form";
 
 const bot = new TelegramBot(token, { polling: true });
 
@@ -12,13 +16,13 @@ bot.on("message", async (message) => {
     const text = message.text;
 
     if (text === "/start") {
-        await bot.sendMessage(chatId, "Hello puk...", {
+        await bot.sendMessage(chatId, "Hello...", {
             reply_markup: {
                 keyboard: [
                     [
                         {
-                            text: "Перезвоните мне!",
-                            web_app: { url: webAppUrl + "/form" },
+                            text: "Заказать обратный звонок",
+                            web_app: { url: webAppFormUrl },
                         },
                     ],
                 ],
@@ -37,5 +41,23 @@ bot.on("message", async (message) => {
                 ],
             },
         });
+    }
+
+    if (message?.web_app_data?.data) {
+        try {
+            const data = JSON.parse(message?.web_app_data?.data);
+
+            await bot.sendMessage(chatId, `Спасибо, ${data.name} !`);
+            await bot.sendMessage(chatId, `Ваш номер телефона: ${data.phone}.`);
+
+            setTimeout(async () => {
+                await bot.sendMessage(
+                    chatId,
+                    `Наш оператор свяжется с вами в ближашее время!`
+                );
+            }, 2000);
+        } catch (e) {
+            console.log(e);
+        }
     }
 });
