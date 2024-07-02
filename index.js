@@ -1,13 +1,25 @@
 const TelegramBot = require("node-telegram-bot-api");
+const express = require("express");
+
+const PORT = process.env.PORT || 8080;
+
+const app = express();
+
+app.get("/", (req, res) => {
+    res.send("HELLO PG + NodeJS");
+});
+
+app.listen(PORT, () => {
+    console.log(`server started on PORT: ${PORT}`);
+});
 
 const token = "7247572793:AAGgHpDggQQxKTk2KK6xgCEY_WXPZhmsLSw";
-// webAppUrl = "https://www.google.ru/?hl=ru";
 
 webAppUrl =
-    "https://667c778313d10800089de728--lighthearted-blancmange-54de70.netlify.app/";
+    "https://667d974f2960c400089fcb0b--lighthearted-blancmange-54de70.netlify.app/";
 
 webAppFormUrl =
-    "https://667c778313d10800089de728--lighthearted-blancmange-54de70.netlify.app/form";
+    "https://667d974f2960c400089fcb0b--lighthearted-blancmange-54de70.netlify.app/form";
 
 const bot = new TelegramBot(token, { polling: true });
 
