@@ -1,8 +1,13 @@
+const db = require("../db");
+
 class TiresController {
     async addTire(req, res) {
-        const { title, season, width, hight, diameter, price } = req.body;
-        console.log(title, season, width, hight, diameter, price);
-        res.json("ok");
+        const { model, season, width, hight, diameter, price } = req.body;
+        const newTire = await db.query(
+            "INSERT INTO tire_items (model, season, width, hight, diameter, price) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+            [model, season, width, hight, diameter, price]
+        );
+        res.json(newTire.rows[0]);
     }
     async getTires(req, res) {}
     async getOneTire(req, res) {}

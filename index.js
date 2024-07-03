@@ -1,4 +1,5 @@
 const TelegramBot = require("node-telegram-bot-api");
+
 const express = require("express");
 const tiresRouter = require("./routes/tires.routes");
 
@@ -13,17 +14,15 @@ app.listen(PORT, () => {
 });
 
 const token = "7247572793:AAGgHpDggQQxKTk2KK6xgCEY_WXPZhmsLSw";
-webAppUrl =
-    "https://667d974f2960c400089fcb0b--lighthearted-blancmange-54de70.netlify.app/";
-
-webAppFormUrl =
-    "https://667d974f2960c400089fcb0b--lighthearted-blancmange-54de70.netlify.app/form";
-
 const bot = new TelegramBot(token, { polling: true });
 
 bot.on("message", async (message) => {
     const chatId = message.chat.id;
     const text = message.text;
+    const webAppUrl =
+        "https://667d974f2960c400089fcb0b--lighthearted-blancmange-54de70.netlify.app/";
+    const webAppFormUrl =
+        "https://667d974f2960c400089fcb0b--lighthearted-blancmange-54de70.netlify.app/form";
 
     if (text === "/start") {
         await bot.sendMessage(chatId, "Hello...", {
@@ -45,6 +44,21 @@ bot.on("message", async (message) => {
                     [
                         {
                             text: "Сайт",
+                            web_app: { url: webAppUrl },
+                        },
+                    ],
+                ],
+            },
+        });
+    }
+
+    if (text === "/puk") {
+        await bot.sendMessage(chatId, "Oh no, you puknul...", {
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        {
+                            text: "Check",
                             web_app: { url: webAppUrl },
                         },
                     ],
