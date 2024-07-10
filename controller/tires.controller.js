@@ -9,7 +9,10 @@ class TiresController {
         );
         res.json(newTire.rows[0]);
     }
-    async getTires(req, res) {}
+    async getTires(req, res) {
+        const allTires = await db.query("SELECT * FROM tire_items;", []);
+        res.json(allTires.rows);
+    }
     async getOneTire(req, res) {}
     async updateTire(req, res) {}
     async deleteTire(req, res) {}

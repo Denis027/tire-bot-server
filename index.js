@@ -1,4 +1,10 @@
 const TelegramBot = require("node-telegram-bot-api");
+const cors = require("cors");
+// const corsOptions = {
+//     origin: "http://localhost:3000/",
+//     credentials: true,
+//     optionSuccessStatus: 200,
+// };
 
 const express = require("express");
 const tiresRouter = require("./routes/tires.routes");
@@ -8,6 +14,7 @@ const app = express();
 
 app.use(express.json());
 app.use("/api", tiresRouter);
+app.use(cors());
 
 app.listen(PORT, () => {
     console.log(`server started on PORT: ${PORT}`);
